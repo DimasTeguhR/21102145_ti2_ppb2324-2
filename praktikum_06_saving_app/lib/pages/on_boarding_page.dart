@@ -14,18 +14,20 @@ class OnBoardingPage extends StatelessWidget {
         child: Column(
           children: [
             SafeArea(
-              child: Image(
-                image: AssetImage('assets/images/money.png'),
-              ),
+              child: SizedBox(height: 30), // Geser turun gambar sebanyak 30px
+            ),
+            Image(
+              image: AssetImage('assets/images/money.png'),
             ),
             SizedBox(
-              height: 30,
+              height: 150,
             ),
             Container(
+              margin: EdgeInsets.symmetric(horizontal: 30),
               padding: EdgeInsets.all(26),
               constraints: BoxConstraints.expand(
-                height: 300,
-                width: 315,
+                height: 260,
+                width: 320,
               ),
               decoration: BoxDecoration(
                 color: kWhite,
@@ -36,19 +38,19 @@ class OnBoardingPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Welcome!',
+                    'Welcome🙌',
                     style: kHeading5.copyWith(color: kBlack),
                   ),
                   SizedBox(
                     height: 15,
                   ),
                   Text(
-                    'welcome to Fleet Finance, the easy way to improve your finances and help you control expenses and income',
+                    'welcome to my-wallet, the easy way to save and control your finance',
                     style: kSubtitle2.copyWith(color: kSuvaGray),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 70,
+                    height: 60,
                   ),
                   TextButton(
                     onPressed: () {
