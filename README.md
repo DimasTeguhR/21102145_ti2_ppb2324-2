@@ -10,12 +10,13 @@ Dimas Teguh Ramadhani
 Repositori ini berisi proyek untuk mata kuliah PPB (Pemrograman Perangkat Bergerak) semester 6 tahun ajaran 2023/2024.
 
 ## Struktur Proyek
-- [Folder A](./praktikum_01/): Basic Flutter
-- [Folder B](./praktikum_02/): Basic Flutter
-- [Folder C](./praktikum_03_mvvm/): Hello World
-- [Folder C](./praktikum_04_layouting/): Layouts in Flutter
-- [Folder C](./praktikum_05_navigation/): Routing Flutter
-- [Folder C](./praktikum_06_saving_app/): E-Wallet App
+- [Folder 1](./praktikum_01/): Basic Flutter
+- [Folder 2](./praktikum_02/): Basic Flutter
+- [Folder 3](./praktikum_03_mvvm/): Hello World
+- [Folder 4](./praktikum_04_layouting/): Layouts in Flutter
+- [Folder 5](./praktikum_05_navigation/): Routing Flutter
+- [Folder 6](./praktikum_06_saving_app/): E-Wallet App
+- [Folder 7](./praktikum_06_saving_app/): Lanjutan E-Wallet App
 
 ## Referensi
 - [Dokumentasi Flutter](https://flutter.dev/docs)
