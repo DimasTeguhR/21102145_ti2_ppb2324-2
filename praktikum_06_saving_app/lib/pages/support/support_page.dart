@@ -7,7 +7,7 @@ class SupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: const Text('Support'),
+        child: const Text('Under construction 🚧'),
       ),
     );
   }

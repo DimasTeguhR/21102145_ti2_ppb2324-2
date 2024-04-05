@@ -7,7 +7,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: const Text('Profile'),
+        child: const Text('Under construction 🚧'),
       ),
     );
   }
