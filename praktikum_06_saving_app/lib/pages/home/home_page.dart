@@ -105,7 +105,7 @@ class HomePage extends StatelessWidget {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'Rp. 8.500.000 / Rp. 15.000.000',
+                          'Rp. 8.500.000 / Rp. 20.000.000',
                           style: kCaption.copyWith(
                             color: kWhite,
                           ),

@@ -53,7 +53,7 @@ class PortfolioPage extends StatelessWidget {
                     height: 12,
                   ),
                   Text(
-                    'Rp 10.000.000',
+                    'Rp 8.500.000',
                     style: kHeading5.copyWith(
                       color: kWhite,
                     ),

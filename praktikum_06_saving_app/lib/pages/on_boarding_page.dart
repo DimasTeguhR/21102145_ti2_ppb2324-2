@@ -45,7 +45,7 @@ class OnBoardingPage extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    'welcome to my-wallet, the easy way to save and control your finance',
+                    'welcome to my-wallet, the easy way to save and control your finance!',
                     style: kSubtitle2.copyWith(color: kSuvaGray),
                     textAlign: TextAlign.center,
                   ),
