@@ -17,6 +17,7 @@ Repositori ini berisi proyek untuk mata kuliah PPB (Pemrograman Perangkat Berger
 - [Folder 5](./praktikum_05_navigation/): Routing Flutter
 - [Folder 6](./praktikum_06_saving_app/): E-Wallet App
 - [Folder 7](./praktikum_06_saving_app/): Lanjutan E-Wallet App
+- [Folder 8](./praktikum_09_firebase_auth/): Firebase auth - note app
 
 ## Referensi
 - [Dokumentasi Flutter](https://flutter.dev/docs)
