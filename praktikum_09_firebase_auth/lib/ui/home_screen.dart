@@ -62,6 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
+                final titleEdc = TextEditingController(text: data['title'].toString());
+                final noteEdc = TextEditingController(text: data['note'].toString());
+
                 return SizedBox(
                   height: 170.0,
                   width: MediaQuery.of(context).size.width,
@@ -85,9 +88,113 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Icon(Icons.more_vert_outlined),
+                              PopupMenuButton<String>(
+                                onSelected: (value) {
+                                  if (value == 'edit') {
+                                    // Tindakan edit
+                                    showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Form(
+                                            key: _formKey,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                TextFormField(
+                                                  controller: titleEdc,
+                                                  decoration: const InputDecoration(hintText: 'Title'),
+                                                  validator: (value) {
+                                                    if (value == null || value.isEmpty) {
+                                                      return 'Please enter a title';
+                                                    }
+                                                    return null;
+                                                  },
+                                                ),
+                                                const SizedBox(height: 10.0),
+                                                SizedBox(
+                                                  height: 300,
+                                                  child: TextFormField(
+                                                    controller: noteEdc,
+                                                    maxLines: null,
+                                                    expands: true,
+                                                    keyboardType: TextInputType.multiline,
+                                                    decoration: const InputDecoration(
+                                                      hintText: 'Write a note',
+                                                      filled: true,
+                                                    ),
+                                                    validator: (value) {
+                                                      if (value == null || value.isEmpty) {
+                                                        return 'Please enter a note';
+                                                      }
+                                                      return null;
+                                                    },
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                                                  ),
+                                                  child: SizedBox(
+                                                    width: MediaQuery.of(context).size.width,
+                                                    child: ElevatedButton(
+                                                      onPressed: () async {
+                                                        if (_formKey.currentState!.validate()) {
+                                                          try {
+                                                            await _firestore
+                                                                .collection('tasks')
+                                                                .doc(document.id)
+                                                                .update({
+                                                              'title': titleEdc.text,
+                                                              'note': noteEdc.text,
+                                                              'timestamp': FieldValue.serverTimestamp(),
+                                                            });
+                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                              const SnackBar(
+                                                                content: Text('Note updated'),
+                                                              ),
+                                                            );
+                                                            Navigator.pop(context);
+                                                          } catch (e) {
+                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                              SnackBar(content: Text('$e')),
+                                                            );
+                                                          }
+                                                        }
+                                                      },
+                                                      child: const Text('Save'),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  } else if (value == 'delete') {
+                                    // Tindakan hapus
+                                    _firestore.collection('tasks').doc(document.id).delete();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Note deleted'),
+                                      ),
+                                    );
+                                  }
+                                },
+                                itemBuilder: (BuildContext context) => [
+                                  const PopupMenuItem<String>(
+                                    value: 'edit',
+                                    child: Text('Edit'),
+                                  ),
+                                  const PopupMenuItem<String>(
+                                    value: 'delete',
+                                    child: Text('Hapus'),
+                                  ),
+                                ],
+                                child: const Icon(Icons.more_vert_outlined),
                               ),
                             ],
                           ),
@@ -164,8 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 try {
-                                  DocumentReference docRef =
-                                      await _firestore.collection('tasks').add({
+                                  await _firestore.collection('tasks').add({
                                     'title': titleController.text,
                                     'note': noteController.text,
                                     'timestamp': FieldValue.serverTimestamp(),
@@ -198,5 +304,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
